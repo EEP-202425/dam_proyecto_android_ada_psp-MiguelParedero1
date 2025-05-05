@@ -1,4 +1,4 @@
-package com.alquilercoches.dominios;
+package com.alquilercoches.model;
 
 import jakarta.persistence.*;
 
