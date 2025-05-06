@@ -13,17 +13,24 @@ public class Coche {
 	private String modelo;
 	private String matricula;
 	private boolean disponible;
+	private double precio;
 
 	public Coche() {
 
 	}
 
-	public Coche(String marca, String modelo, String matricula, boolean disponible) {
+
+	public Coche(Long id, String marca, String modelo, String matricula, boolean disponible, double precio) {
+		super();
+		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.matricula = matricula;
 		this.disponible = disponible;
+		this.precio = precio;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -63,6 +70,14 @@ public class Coche {
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
 
 }

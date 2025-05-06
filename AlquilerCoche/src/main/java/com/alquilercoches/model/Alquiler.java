@@ -26,15 +26,14 @@ public class Alquiler {
 
     private boolean devuelto;
 
-    // Relación con Coche
+
     @ManyToOne
     @JoinColumn(name = "coche_id")
     private Coche coche;
 
-   
-     @ManyToOne
-     @JoinColumn(name = "usuario_id")
-     private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 
 	public Long getId() {
@@ -97,14 +96,13 @@ public class Alquiler {
 	}
 
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+	//public Usuario getUsuario() {
+	//	return usuario;
+	//}
 
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-     
+	//public void setUsuario(Usuario usuario) {
+	//	this.usuario = usuario;
+	//}
      
 }
