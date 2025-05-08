@@ -8,10 +8,7 @@ import java.time.LocalDate;
 import com.alquilercoches.model.Coche;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"coche_id", "usuario_id", "fechaInicio"}))
 public class Alquiler {
 
     @Id

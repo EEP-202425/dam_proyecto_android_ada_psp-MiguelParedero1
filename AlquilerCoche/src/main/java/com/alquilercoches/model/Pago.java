@@ -22,7 +22,7 @@ public class Pago {
 
     private double importe;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "alquiler_id")
     private Alquiler alquiler;
 }
