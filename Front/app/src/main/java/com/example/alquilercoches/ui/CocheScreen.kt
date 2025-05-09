@@ -1,38 +1,53 @@
-package com.example.alquilercocheapp.ui
+package com.example.alquilercoches.ui  // ajústalo si usas otro paquete
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.*                // Box, LazyColumn, etc.
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.alquilercocheapp.model.Coche
-import com.example.alquilercocheapp.viewmodel.CocheUiState
-import com.example.alquilercocheapp.viewmodel.CocheViewModel
+import androidx.compose.material3.*                          // CircularProgressIndicator, Card, MaterialTheme…
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState               // collectAsState()
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment                         // Alignment.Center
 import androidx.compose.ui.unit.dp
-
+import androidx.lifecycle.viewmodel.compose.viewModel         // viewModel()
+import com.example.alquilercoches.ui.model.Coche
+import com.example.alquilercoches.ui.viewmodel.CocheUiState
+import com.example.alquilercoches.ui.viewmodel.CocheViewModel
 
 @Composable
 fun CocheScreen(
-    cocheViewModel: CocheViewModel = viewModel()
+    modifier: Modifier = Modifier,
+    viewModel: CocheViewModel = viewModel()               // <— aquí
 ) {
-    val uiState by cocheViewModel.uiState.collectAsState()
+    // Observa el StateFlow del ViewModel
+    val uiState = viewModel.uiState.collectAsState().value
 
-    when (uiState) {
-        is CocheUiState.Loading -> {
-            CircularProgressIndicator()
-        }
-        is CocheUiState.Success -> {
-            val coches = (uiState as CocheUiState.Success).coches
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(coches) { coche ->
-                    CocheItem(coche)
+    Box(modifier = modifier) {
+        when (uiState) {
+            is CocheUiState.Loading -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
                 }
             }
-        }
-        is CocheUiState.Error -> {
-            Text("Error cargando los coches")
+            is CocheUiState.Success -> {
+                val coches = (uiState as CocheUiState.Success).coches
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(coches) { coche ->
+                        CocheItem(coche)
+                    }
+                }
+            }
+            is CocheUiState.Error -> {
+                Box(
+                    Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("Error al cargar")
+                }
+            }
         }
     }
 }
@@ -43,13 +58,13 @@ fun CocheItem(coche: Coche) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "${coche.marca} ${coche.modelo}", style = MaterialTheme.typography.titleLarge)
-            Text(text = "Matrícula: ${coche.matricula}")
-            Text(text = "Precio: ${coche.precio} €/día")
-            Text(text = if (coche.disponible) "Disponible" else "No disponible")
+            Text("${coche.marca} ${coche.modelo}", style = MaterialTheme.typography.titleLarge)
+            Text("Matrícula: ${coche.matricula}")
+            Text("Precio: ${coche.precio} €/día")
+            Text(if (coche.disponible) "Disponible" else "No disponible")
         }
     }
 }

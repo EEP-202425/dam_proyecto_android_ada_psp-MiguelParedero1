@@ -1,35 +1,35 @@
-package com.example.alquilercocheapp.viewmodel
+package com.example.alquilercoches.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.alquilercocheapp.model.Coche
-import com.example.alquilercocheapp.network.CocheApi
+import com.example.alquilercoches.ui.api.CocheApi
+import com.example.alquilercoches.ui.model.Coche
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 sealed interface CocheUiState {
+    object Loading : CocheUiState
     data class Success(val coches: List<Coche>) : CocheUiState
     object Error : CocheUiState
-    object Loading : CocheUiState
 }
 
 class CocheViewModel : ViewModel() {
-
     private val _uiState = MutableStateFlow<CocheUiState>(CocheUiState.Loading)
     val uiState: StateFlow<CocheUiState> = _uiState
 
     init {
-        getCoches()
+        fetchCoches()
     }
 
-    private fun getCoches() {
+    private fun fetchCoches() {
         viewModelScope.launch {
-            try {
-                val listaCoches = CocheApi.retrofitService.getCoches()
-                _uiState.value = CocheUiState.Success(listaCoches)
+            _uiState.value = CocheUiState.Loading
+            _uiState.value = try {
+                val lista = CocheApi.retrofitService.getCoches()
+                CocheUiState.Success(lista)
             } catch (e: Exception) {
-                _uiState.value = CocheUiState.Error
+                CocheUiState.Error
             }
         }
     }

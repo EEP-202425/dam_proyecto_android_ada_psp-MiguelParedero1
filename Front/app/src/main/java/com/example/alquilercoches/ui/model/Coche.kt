@@ -1,4 +1,4 @@
-package com.example.alquilercocheapp.model
+package com.example.alquilercoches.ui.model
 
 import kotlinx.serialization.Serializable
 
