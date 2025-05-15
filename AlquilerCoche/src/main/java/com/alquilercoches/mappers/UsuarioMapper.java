@@ -3,6 +3,8 @@ package com.alquilercoches.mappers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alquilercoches.dtos.LoginDto;
+import com.alquilercoches.dtos.RegistroDto;
 import com.alquilercoches.dtos.UsuarioDto;
 import com.alquilercoches.model.Usuario;
 
@@ -27,5 +29,25 @@ public class UsuarioMapper {
 		return usuarioDtos ;
 		
 	}
+	
+	public Usuario toEntity(RegistroDto registroDto) {
+		Usuario usuario = new Usuario();
+		usuario.setEmail(registroDto.getEmail());
+		usuario.setNombre(registroDto.getNombre());
+		usuario.setPassword(registroDto.getPassword());
+		usuario.setTelefono(registroDto.getTelefono());
+		usuario.setUsuario(registroDto.getUsuario());
+		return usuario;
+		
+	}
+	
+	public Usuario toEntity(LoginDto loginDto) {
+		Usuario usuario = new Usuario();
+		usuario.setPassword(loginDto.getPassword());
+		usuario.setUsuario(loginDto.getUsuario());
+		return usuario;
+		
+	}
+
 
 }
