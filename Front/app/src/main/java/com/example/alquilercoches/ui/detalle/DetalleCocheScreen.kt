@@ -9,6 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.produceState
+import com.example.alquilercoches.ui.api.CocheApi
+import com.example.alquilercoches.ui.model.Coche
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,35 +21,24 @@ fun DetalleCocheScreen(
     onBack: () -> Unit,
     onEdit: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Detalle del coche #$id") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Volver")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = onEdit) {
-                        Icon(Icons.Filled.Edit, contentDescription = "Editar")
-                    }
-                }
-            )
+    val state = produceState<Coche?>(initialValue = null, id) {
+        value = try {
+            CocheApi.retrofitService.getCocheById(id)
+        } catch (e: Exception) {
+            null
         }
-    ) { padding ->
-        // Aquí podrías fetchear el coche por id y mostrar sus detalles
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp)
-        ) {
-            Text("Marca: …")
-            Spacer(Modifier.height(8.dp))
-            Text("Modelo: …")
-            // etc.
+    }
+
+    val coche = state.value
+    if (coche == null) {
+        CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+    } else {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text("Marca: ${coche.marca}")
+            Text("Modelo: ${coche.modelo}")
+            Text("Precio: ${coche.precio}")
+            Button(onClick = onBack, modifier = Modifier.padding(top = 16.dp)) { Text("Volver") }
+            Button(onClick = onEdit, modifier = Modifier.padding(top = 8.dp)) { Text("Editar") }
         }
     }
 }
-
