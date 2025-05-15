@@ -2,6 +2,8 @@ package com.alquilercoches.controller;
 
 import com.alquilercoches.model.Coche;
 import com.alquilercoches.servicios.CocheService;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +21,8 @@ public class CocheController {
     }
 
     @GetMapping
-    public List<Coche> getAllCoches() {
-        return cocheService.findAll();
+    public Page<Coche> getAllCoches(@RequestParam int numPagina, @RequestParam (required = false) String marca) {
+        return cocheService.findAll(numPagina, marca);
     }
 
     @GetMapping("/{id}")
