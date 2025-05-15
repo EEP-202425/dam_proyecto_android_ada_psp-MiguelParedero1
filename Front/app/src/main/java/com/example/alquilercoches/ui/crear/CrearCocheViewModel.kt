@@ -50,10 +50,7 @@ class CrearCocheViewModel(private val editId: Long?) : ViewModel() {
         }
     }
 
-    /**
-     * Guarda (POST o PUT), recupera el coche resultante del API
-     * y lo pasa al callback onSaved.
-     */
+
     fun save(onSaved: (Coche) -> Unit) = viewModelScope.launch {
         val current = _uiState.value
         if (current !is CrearCocheUiState.Form) return@launch

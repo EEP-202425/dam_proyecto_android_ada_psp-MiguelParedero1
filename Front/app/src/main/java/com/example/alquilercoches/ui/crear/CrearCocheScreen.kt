@@ -36,7 +36,6 @@ fun CrearCocheScreen(
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 onClick = {
-                    // lanzamos el guardado y, cuando termine, disparará onSave(coche)
                     viewModel.save { cocheGuardado ->
                         onSave(cocheGuardado)
                     }

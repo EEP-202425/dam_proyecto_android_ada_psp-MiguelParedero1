@@ -15,12 +15,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.alquilercoches.ui.CocheScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.alquilercoches.ui.auth.LoginScreen
+import com.example.alquilercoches.ui.viewmodel.CocheScreen
 import com.example.alquilercoches.ui.auth.RegisterScreen
 import com.example.alquilercoches.ui.crear.CrearCocheScreen
 import com.example.alquilercoches.ui.detalle.DetalleCocheScreen
 import com.example.alquilercoches.ui.theme.AlquilerCochesTheme
+import com.example.alquilercoches.ui.viewmodel.CocheScreen
 import com.example.alquilercoches.ui.viewmodel.CocheViewModel
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +32,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             AlquilerCochesTheme {
                 val navController = rememberNavController()
-                // ViewModel compartido para la lista de coches:
                 val listVm: CocheViewModel = viewModel()
 
                 Scaffold { innerPadding ->
@@ -57,15 +58,14 @@ class MainActivity : ComponentActivity() {
                             }
 
 
-                            // --- LISTADO / DETALLE / CREAR ---
                             composable("listado") {
+                                val listVm: CocheViewModel = viewModel()
                                 CocheScreen(
                                     viewModel = listVm,
-                                    modifier = Modifier.fillMaxSize(),
-                                    onSelect = { coche ->
+                                    onSelect  = { coche ->
                                         navController.navigate("detalle/${coche.id}")
                                     },
-                                    onCreate = {
+                                    onCreate  = {
                                         navController.navigate("crear")
                                     }
                                 )
