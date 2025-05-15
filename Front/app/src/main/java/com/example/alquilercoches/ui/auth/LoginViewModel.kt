@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import com.example.alquilercoches.ui.api.AuthApiService      // <— correcto
-import com.example.alquilercoches.ui.api.LoginRequest        // <— importa el DTO
+import com.example.alquilercoches.ui.api.AuthApiService
+import com.example.alquilercoches.ui.api.LoginRequest
 import retrofit2.HttpException
 
 class LoginViewModel : ViewModel() {

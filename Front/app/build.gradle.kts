@@ -22,7 +22,7 @@ android {
         compose = true
     }
     composeOptions {
-        // El compilerExtensionVersion debe ir acorde con tu BOM de Compose
+
         kotlinCompilerExtensionVersion = "1.5.0"
     }
 
@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    // BOM para alinear todas las versiones de Compose
+
     implementation(platform("androidx.compose:compose-bom:2024.04.01"))
     implementation("androidx.datastore:datastore-preferences:1.1.0")
 

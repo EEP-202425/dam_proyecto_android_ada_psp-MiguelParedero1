@@ -1,4 +1,3 @@
-// src/main/java/com/example/alquilercoches/ui/api/AuthApiService.kt
 package com.example.alquilercoches.ui.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -34,7 +33,7 @@ interface AuthApi {
     @POST("api/usuarios/login")
     suspend fun login(@Body req: LoginRequest): MessageResponse
 
-    @POST("api/usuarios")          // coincide con @PostMapping("/api/usuarios")
+    @POST("api/usuarios")
     suspend fun register(@Body req: RegisterRequest): RegisterResponse
 }
 

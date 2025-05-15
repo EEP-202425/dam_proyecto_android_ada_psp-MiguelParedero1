@@ -13,7 +13,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT) // o FAIL_ON_PROJECT_REPOS si ya lo cambiaste
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT) 
     repositories {
         google()
         mavenCentral()

@@ -9,7 +9,6 @@ import com.example.alquilercoches.ui.crear.CrearCocheUiState
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-// (importa aquí tu sealed interface CrearCocheUiState)
 
 class CrearCocheViewModel(private val editId: Long?) : ViewModel() {
     private val _uiState = MutableStateFlow<CrearCocheUiState>(CrearCocheUiState.Loading)
@@ -38,7 +37,6 @@ class CrearCocheViewModel(private val editId: Long?) : ViewModel() {
         }
     }
 
-    // Cambios de campo
     fun onMarcaChange(v: String) = update { it.copy(marca = v) }
     fun onModeloChange(v: String) = update { it.copy(modelo = v) }
     fun onMatriculaChange(v: String) = update { it.copy(matricula = v) }
@@ -75,10 +73,8 @@ class CrearCocheViewModel(private val editId: Long?) : ViewModel() {
             } else {
                 CocheApi.retrofitService.updateCoche(editId, toSend)
             }
-            // devolvemos el coche tal cual nos llegó del servidor
             onSaved(resultado)
         } catch (e: Exception) {
-            // aquí podrías emitir un error en uiState o mostrar un Snackbar...
         }
     }
 

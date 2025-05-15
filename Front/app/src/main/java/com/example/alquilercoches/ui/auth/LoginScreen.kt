@@ -59,13 +59,12 @@ fun LoginScreen(
                 is AuthUiState.Loading -> CircularProgressIndicator()
                 is AuthUiState.Success -> LaunchedEffect(uiState) { onLoggedIn() }
                 is AuthUiState.Error   -> {
-                    // aquí usamos `.error`, que es el nombre de la propiedad en tu AuthUiState.Error
                     Text(
                         text = (uiState as AuthUiState.Error).error,
                         color = MaterialTheme.colorScheme.error
                     )
                 }
-                else -> { /* Idle */ }
+                else -> { }
             }
         }
     }

@@ -39,7 +39,6 @@ fun CocheScreen(
     onSelect: (Coche) -> Unit,
     onCreate: () -> Unit           // <— aquí
 ) {
-    // Observa el StateFlow del ViewModel
     val uiState = viewModel.uiState.collectAsState().value
 
     Box(modifier = modifier) {
@@ -107,7 +106,7 @@ fun CocheItem(
     modifier: Modifier = Modifier          // <— por defecto vacío
 ) {
     Card(
-        modifier = modifier                   // <- úsalo aquí
+        modifier = modifier
             .padding(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {

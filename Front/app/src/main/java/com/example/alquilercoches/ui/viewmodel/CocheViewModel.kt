@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-// Your UI state sealed interface
 sealed interface CocheUiState {
     object Loading : CocheUiState
     data class Success(val coches: List<Coche>) : CocheUiState
@@ -26,7 +25,7 @@ class CocheViewModel : ViewModel() {
     private fun fetchCoches() = viewModelScope.launch {
         _uiState.value = CocheUiState.Loading
         try {
-            val page = CocheApi.retrofitService.getCoches()    // ahora es PageWrapper<Coche>
+            val page = CocheApi.retrofitService.getCoches()
             _uiState.value = CocheUiState.Success(page.content)
         } catch (e: Exception) {
             _uiState.value = CocheUiState.Error(e.message ?: "Error desconocido")

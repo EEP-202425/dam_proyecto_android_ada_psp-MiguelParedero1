@@ -16,7 +16,7 @@ import retrofit2.Response
 import retrofit2.http.Query
 
 
-private const val BASE_URL = "http://10.0.2.2:8080/" // o tu host real
+private const val BASE_URL = "http://10.0.2.2:8080/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(
