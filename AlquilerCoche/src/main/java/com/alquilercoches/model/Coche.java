@@ -1,5 +1,10 @@
 package com.alquilercoches.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +19,11 @@ public class Coche {
 	private String matricula;
 	private boolean disponible;
 	private double precio;
+	
+	// Un coche puede aparecer en muchos alquileres
+	  @OneToMany(mappedBy = "coche", cascade = CascadeType.ALL, orphanRemoval = true)
+	  @JsonIgnore
+	  private List<Alquiler> alquileres = new ArrayList<>();
 
 	public Coche() {
 

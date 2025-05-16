@@ -31,6 +31,7 @@ public class Alquiler {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+    
 
 
 	public Long getId() {
