@@ -18,7 +18,7 @@ AlquilerCoches es una aplicación Android de gestión de vehículos de alquiler.
 - **RF-AN-06** Pantalla de registro — implementado  
 - **RF-AN-07** Pantalla de consulta de datos de un coche — implementado  
 - **RF-AN-08** Formulario de modificación de un coche — implementado  
-- **RF-AN-09** Botón de eliminación en listado y detalle — parcialmente implementado  
+- **RF-AN-09** Botón de eliminación en listado y detalle — no implementado  
 - **RF-AN-10** Widget de selección para campos predefinidos — parcialmente implementado (valores en lista local)  
 - **RF-AN-11** Paginación, ordenación y búsqueda en el listado — parcialmente implementado
 
@@ -31,7 +31,7 @@ AlquilerCoches es una aplicación Android de gestión de vehículos de alquiler.
 - **RF-API-06** Paginación en respuestas GET — parcialmente implementado (backend preparado, front no usa)  
 - **RF-API-07** Ordenación de resultados — no implementado  
 - **RF-API-08** Filtrado por parámetro — parcialmente implementado(búsqueda por marca de coche)  
-- **RF-API-09** GET para valores de campo (p. ej. marcas) — no implementado  
+- **RF-API-09** GET para valores de campo (p. ej. marcas) — parcialmente implementado con el get que se puede filtrar por marca  
 - **RF-API-10** Endpoint para login de usuarios — implementado  
 - **RF-API-11** Endpoint para registro de usuarios — implementado  
 
